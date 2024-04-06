@@ -12,7 +12,7 @@ TEST(SVDForwardTest, trivialSVD) {
     const torch::Tensor tensor = torch::eye(tensorSize, options);
 
     // calculate SVD
-    const SafeSVD safeSVD;
+    const dla::SafeSVD safeSVD;
     torch::autograd::AutogradContext* ctx = new torch::autograd::AutogradContext;
     const torch::autograd::variable_list usv = safeSVD.forward(ctx, tensor);
 
@@ -32,7 +32,7 @@ TEST(SVDForwardTest, orthogonalUV) {
     const torch::Tensor tensor = torch::ones({tensorSize1,tensorSize2}, options);
 
     // calculate SVD
-    const SafeSVD safeSVD;
+    const dla::SafeSVD safeSVD;
     torch::autograd::AutogradContext* ctx = new torch::autograd::AutogradContext;
     const torch::autograd::variable_list usv = safeSVD.forward(ctx, tensor);
 
@@ -53,7 +53,7 @@ TEST(SVDBackwardTest, gradEye3) {
     const torch::Tensor tensor = torch::eye(tensorSize, options);
 
     // calculate SVD from forward
-    SafeSVD safeSVD;
+    dla::SafeSVD safeSVD;
     torch::autograd::AutogradContext* ctx = new torch::autograd::AutogradContext;
     const torch::autograd::variable_list usv = safeSVD.forward(ctx, tensor);
 
